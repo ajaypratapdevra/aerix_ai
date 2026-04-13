@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --font-orbitron: 'Orbitron', monospace;
+  --font-exo2: 'Exo 2', sans-serif;
+
+  --brand-cyan: #00BFFF;
+  --brand-orange: #FF6200;
+  --brand-navy: #0A0E1A;
+  --brand-navy-light: #0F1629;
+  --brand-navy-card: #141C35;
+  --brand-navy-border: #1E2A4A;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--brand-navy);
+  color: #CBD5E1;
+  font-family: var(--font-exo2);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--brand-navy); }
+::-webkit-scrollbar-thumb { background: var(--brand-navy-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-cyan); }
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection {
+  background: rgba(0, 191, 255, 0.3);
+  color: white;
+}
+
+/* ─── Typography ────────────────────────────────────────────── */
+.font-heading { font-family: var(--font-orbitron); }
+.font-body { font-family: var(--font-exo2); }
+
+/* ─── AERIX Components ──────────────────────────────────────── */
+@layer components {
+  .btn-primary {
+    @apply bg-brand-orange text-white font-heading font-semibold px-6 py-3 rounded-lg 
+           hover:bg-orange-600 transition-all duration-300 hover:shadow-orange-glow
+           active:scale-95 inline-flex items-center gap-2 text-sm tracking-wider uppercase;
+  }
+
+  .btn-outline {
+    @apply border border-brand-cyan text-brand-cyan font-heading font-semibold px-6 py-3 rounded-lg 
+           hover:bg-brand-cyan hover:text-brand-navy transition-all duration-300 hover:shadow-cyan-glow
+           active:scale-95 inline-flex items-center gap-2 text-sm tracking-wider uppercase;
+  }
+
+  .btn-ghost {
+    @apply text-slate-300 hover:text-brand-cyan font-medium px-4 py-2 rounded-lg 
+           hover:bg-white/5 transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .card {
+    @apply bg-brand-navy-card border border-brand-navy-border rounded-xl p-6 
+           shadow-card hover:border-brand-cyan/30 transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-cyan-glow hover:-translate-y-1 cursor-pointer;
+  }
+
+  .section-label {
+    @apply text-brand-cyan text-xs font-heading font-semibold tracking-[0.3em] uppercase mb-3;
+  }
+
+  .section-title {
+    @apply text-white font-heading font-bold text-3xl md:text-4xl leading-tight;
+  }
+
+  .section-title span {
+    @apply text-brand-cyan;
+  }
+
+  .input-field {
+    @apply w-full bg-brand-navy-light border border-brand-navy-border rounded-lg px-4 py-3
+           text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan
+           focus:ring-1 focus:ring-brand-cyan/30 transition-all duration-200 font-body;
+  }
+
+  .select-field {
+    @apply input-field appearance-none cursor-pointer;
+  }
+
+  .badge {
+    @apply text-xs font-heading font-semibold tracking-widest uppercase px-3 py-1 rounded-full;
+  }
+
+  .badge-cyan {
+    @apply badge bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20;
+  }
+
+  .badge-orange {
+    @apply badge bg-brand-orange/10 text-brand-orange border border-brand-orange/20;
+  }
+
+  .badge-green {
+    @apply badge bg-green-500/10 text-green-400 border border-green-500/20;
+  }
+
+  .badge-yellow {
+    @apply badge bg-yellow-500/10 text-yellow-400 border border-yellow-500/20;
+  }
+
+  .badge-red {
+    @apply badge bg-red-500/10 text-red-400 border border-red-500/20;
+  }
+
+  /* Cyber grid background */
+  .bg-grid {
+    background-image: 
+      linear-gradient(rgba(0, 191, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 191, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Glow line accent */
+  .glow-line {
+    @apply h-px bg-gradient-to-r from-transparent via-brand-cyan to-transparent opacity-30;
+  }
+
+  /* Sidebar nav item */
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white
+           hover:bg-white/5 transition-all duration-200 font-medium cursor-pointer;
+  }
+
+  .nav-item-active {
+    @apply nav-item bg-brand-cyan/10 text-brand-cyan border-l-2 border-brand-cyan;
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply card flex items-center gap-4;
+  }
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 191, 255, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(0, 191, 255, 0.7); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.5s ease-out forwards; }
+.animate-typing { animation: typing-cursor 1s step-end infinite; }
